@@ -17,21 +17,32 @@ class Main {
        System.out.println("Introduzca el número de elementos");
        String limit = sc.next();
        int limitint = Integer.parseInt(limit);
-        fibonacci(limitint);
+       if(limitint<=0){
+         System.out.println("Número de elementos inválido");
+       }
+       else{
+        fibonacci(limitint); 
+       }
      } else if(option.equals("2")){
        System.out.println("Introduzca el número de elementos");
        String limit = sc.next();
        int limitint = Integer.parseInt(limit);
-       for(int i = 1; i<= limitint;i++){
-        System.out.print(padovan(i)+", ");
-      }
-      System.out.println();
-      
+       if(limitint<=0){
+         System.out.println("Número de elementos inválido");
+       }
+       else{
+       padovan(limitint);
+       }
      } else if(option.equals("3")){
        System.out.println("Introduzca el número de renglones");
        String limit = sc.next();
        int limitint = Integer.parseInt(limit);
+       if(limitint<=0){
+         System.out.println("Número de elementos inválido");
+       }
+       else{
        pascal(limitint);
+       }
      } else if(option.equals("4")){
        System.out.println("bye bye");
        sc.close();
@@ -46,25 +57,36 @@ class Main {
    }
   }
   
-  public static int padovan(int limit){
+  public static void padovan(int limit){
     
-    if(limit>3){
+    /*if(limit>3){
       
       return padovan(limit-2) + padovan(limit-3);
     } else if(limit<4 && limit>0){
       return 1;
     } else{
       return -1;
-    }
-  }
-
-  public static void fibonacci(int limit){
-    int t1 = 0, t2 = 1;
+    }*/
+    long t1 = 1, t2 = 1, t3=1;
         for (int i = 1; i <= limit; ++i)
         {
             System.out.print(t1 + ", ");
 
-            int sum = t1 + t2;
+            long sum = t1 + t2;
+            t1 = t2;
+            t2 = t3;
+            t3 = sum;
+        }
+        System.out.println();
+  }
+
+  public static void fibonacci(int limit){
+    long t1 = 0, t2 = 1;
+        for (int i = 1; i <= limit; ++i)
+        {
+            System.out.print(t1 + ", ");
+
+            long sum = t1 + t2;
             t1 = t2;
             t2 = sum;
         }
@@ -76,7 +98,7 @@ class Main {
             System.out.print(" ");
          }
          for(int j = 0; j <= i; j++){
-            int facti,i2=i,ij=i-j, factij, j2=j,factj;
+            long facti,i2=i,ij=i-j, factij, j2=j,factj;
             for(facti=1;i2>1;i2--){
               facti*=i2;
             }
@@ -87,7 +109,7 @@ class Main {
               factj*=j2;
             }
             //System.out.println("facti:" + facti + "factij:" + factij + "factj:" + factj);
-            int ncr = facti / ( factij * factj);
+            long ncr = facti / ( factij * factj);
             System.out.print(" "+ncr);
          }
          System.out.println();
