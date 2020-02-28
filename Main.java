@@ -3,6 +3,7 @@ import java.util.Scanner;
 class Main {
   public static void main(String[] args) {
    
+     System.out.println();
      System.out.println("Sistema de secuencias numéricas v1.0");
      while(true){
      System.out.println("Seleccione una opción introduciendo el número de ella");
@@ -10,10 +11,12 @@ class Main {
      System.out.println("2- Serie de Padovan");
      System.out.println("3- Triángulo de Pascal");
      System.out.println("4- Salir");
+     System.out.println();
      Scanner sc = new Scanner(System.in);
      String option = sc.next();
      try{
      if(option.equals("1")){
+       System.out.println("Serie de Fibonacci");
        System.out.println("Introduzca el número de elementos");
        String limit = sc.next();
        int limitint = Integer.parseInt(limit);
@@ -24,6 +27,7 @@ class Main {
         fibonacci(limitint); 
        }
      } else if(option.equals("2")){
+       System.out.println("Serie de Padovan");
        System.out.println("Introduzca el número de elementos");
        String limit = sc.next();
        int limitint = Integer.parseInt(limit);
@@ -34,6 +38,7 @@ class Main {
        padovan(limitint);
        }
      } else if(option.equals("3")){
+       System.out.println("Triángulo de Pascal");
        System.out.println("Introduzca el número de renglones");
        String limit = sc.next();
        int limitint = Integer.parseInt(limit);
@@ -70,9 +75,15 @@ class Main {
     long t1 = 1, t2 = 1, t3=1;
         for (int i = 1; i <= limit; ++i)
         {
+            if(t1<=0){
+              System.out.println();
+              System.out.println("El elemento " + (i+1)+" es más grande de lo soportado en el programa, por lo tanto se ha detenido");
+              break;
+            }
             System.out.print(t1 + ", ");
 
             long sum = t1 + t2;
+            
             t1 = t2;
             t2 = t3;
             t3 = sum;
@@ -84,6 +95,11 @@ class Main {
     long t1 = 0, t2 = 1;
         for (int i = 1; i <= limit; ++i)
         {
+          if(t1<0){
+            System.out.println();
+              System.out.println("El elemento " + (i+1)+" es más grande de lo soportado en el programa, por lo tanto se ha detenido");
+              break;
+            }
             System.out.print(t1 + ", ");
 
             long sum = t1 + t2;
@@ -110,6 +126,11 @@ class Main {
             }
             //System.out.println("facti:" + facti + "factij:" + factij + "factj:" + factj);
             long ncr = facti / ( factij * factj);
+            if(ncr<=0){
+              System.out.println("La fila " + (i+1)+" contiene un elemento más grande de lo soportado en el programa, por lo tanto se ha detenido");
+              i=limit+1;
+              break;
+            }
             System.out.print(" "+ncr);
          }
          System.out.println();
